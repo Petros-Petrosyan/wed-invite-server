@@ -54,3 +54,29 @@ exports.logIn = async ({ userName, password }) => {
     return { status: 401, data: messages.invalid_name_or_password };
   }
 };
+
+exports.changePassword = async ({ newPassword, password, userId }) => {
+  try {
+    const user = await Users.findOne({ where: { id: String(userId) } });
+    const validUser = await bcrypt.compare(password, user.password);
+
+    if (!user || !validUser) {
+      return {
+        status: 401,
+        data: messages.invalid_name_or_password,
+      };
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+    await Users.update(
+      { ...user.dataValues, password: hashedPassword },
+      { where: { id: String(userId) } }
+    );
+
+    return { status: 200, data: "Success" };
+  } catch (error) {
+    console.log(error);
+    return { status: 500, data: error };
+  }
+};
