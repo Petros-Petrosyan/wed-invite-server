@@ -19,3 +19,21 @@ exports.logIn = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.changePassword = async (req, res) => {
+  try {
+    const {
+      body,
+      user: { id },
+    } = req;
+
+    const { status, data } = await authenticationServices.changePassword({
+      newPassword: body.newPassword,
+      password: body.password,
+      userId: id,
+    });
+    res.status(status).send(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
