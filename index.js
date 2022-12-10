@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const authenticationRoutes = require("./routes/authentication");
+const userRoutes = require("./routes/user");
 const templatesRoutes = require("./routes/templates");
 const errorHandler = require("./utils/errorHandler");
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(authenticationRoutes);
+app.use(userRoutes);
 app.use(templatesRoutes);
 app.use(errorHandler);
 

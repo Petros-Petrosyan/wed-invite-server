@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+
+      isOnboarded: {
+        type: Sequelize.BOOLEAN,
+      },
+
       userName: {
         type: Sequelize.STRING,
       },

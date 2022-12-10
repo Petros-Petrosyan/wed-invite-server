@@ -13,6 +13,7 @@ exports.signUp = async ({ userName, password }) => {
     try {
       const hashedPassword = await bcrypt.hash(password, 12);
       await Users.create({
+        isOnboarded: false,
         userName,
         password: hashedPassword,
       });
@@ -46,6 +47,7 @@ exports.logIn = async ({ userName, password }) => {
       data: {
         id: user.dataValues.id,
         userName: user.dataValues.userName,
+        isOnboarded: user.isOnboarded,
         accessToken,
       },
     };
