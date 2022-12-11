@@ -18,7 +18,6 @@ exports.onboarding = async (id) => {
       data: { isOnboarded: updatedUser.isOnboarded },
     };
   } catch (error) {
-    console.log(error);
     return { status: 401, data: messages.invalid_name_or_password };
   }
 };

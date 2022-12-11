@@ -18,13 +18,11 @@ exports.signUp = async ({ userName, password }) => {
         password: hashedPassword,
       });
     } catch (error) {
-      console.log(error);
       return { status: 500, data: error };
     }
 
     return { status: 201, data: messages.success_signup };
   } catch (error) {
-    console.log(error);
     return { status: 500, data: error };
   }
 };
@@ -52,7 +50,6 @@ exports.logIn = async ({ userName, password }) => {
       },
     };
   } catch (error) {
-    console.log(error);
     return { status: 401, data: messages.invalid_name_or_password };
   }
 };
@@ -78,7 +75,6 @@ exports.changePassword = async ({ newPassword, password, userId }) => {
 
     return { status: 200, data: "Success" };
   } catch (error) {
-    console.log(error);
     return { status: 500, data: error };
   }
 };

@@ -1,5 +1,4 @@
 const { Messages, Templates } = require("../models");
-const { showMessage } = require("../utils/showMessage");
 
 exports.getMessages = async ({ id }) => {
   try {
@@ -26,11 +25,8 @@ exports.addMessages = async ({ url, message, name, guests }) => {
       userId: String(template.dataValues.userId),
     });
 
-    showMessage(res.dataValues);
-
     return { status: 200, data: res.dataValues };
   } catch (error) {
-    showMessage(error);
     return { status: 500, data: error };
   }
 };
