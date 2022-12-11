@@ -1,7 +1,6 @@
 const { Templates } = require("../models");
 const { messages } = require("../constants/messages");
 const { v4: uuidv4 } = require("uuid");
-const { STRING } = require("sequelize");
 
 exports.getTemplateByUrl = async ({ url }) => {
   try {
