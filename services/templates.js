@@ -1,4 +1,4 @@
-const { Templates } = require("../models");
+const { Templates, Messages } = require("../models");
 const { messages } = require("../constants/messages");
 const { v4: uuidv4 } = require("uuid");
 
@@ -82,6 +82,7 @@ exports.updateTemplates = async ({ body, userId }) => {
 exports.deleteTemplates = async ({ userId }) => {
   try {
     await Templates.destroy({ where: { userId: String(userId) } });
+    await Messages.destroy({ where: { userId: String(userId) } });
 
     return { status: 200, data: messages.WEB_PAGE_DELETED };
   } catch (error) {
