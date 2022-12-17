@@ -9,6 +9,7 @@
 ## Pre-requisites
 
 [NodeJS](https://nodejs.org/en/blog/release/v16.16.0/) V16
+
 [PostgreSQL](https://www.postgresql.org/) 12.12
 
 ## Getting Started
