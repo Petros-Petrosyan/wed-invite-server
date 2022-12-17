@@ -6,4 +6,5 @@ exports.messages = {
   not_authenticated: "You are not authenticated.",
   has_data: "You already have a data.",
   WEB_PAGE_DELETED: "Your web page was successfully deleted.",
+  success_onboarded: "Successfully onboarded",
 };

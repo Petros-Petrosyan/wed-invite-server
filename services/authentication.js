@@ -13,17 +13,16 @@ exports.signUp = async ({ userName, password }) => {
     try {
       const hashedPassword = await bcrypt.hash(password, 12);
       await Users.create({
+        isOnboarded: false,
         userName,
         password: hashedPassword,
       });
     } catch (error) {
-      console.log(error);
       return { status: 500, data: error };
     }
 
     return { status: 201, data: messages.success_signup };
   } catch (error) {
-    console.log(error);
     return { status: 500, data: error };
   }
 };
@@ -46,11 +45,11 @@ exports.logIn = async ({ userName, password }) => {
       data: {
         id: user.dataValues.id,
         userName: user.dataValues.userName,
+        isOnboarded: user.isOnboarded,
         accessToken,
       },
     };
   } catch (error) {
-    console.log(error);
     return { status: 401, data: messages.invalid_name_or_password };
   }
 };
@@ -76,7 +75,6 @@ exports.changePassword = async ({ newPassword, password, userId }) => {
 
     return { status: 200, data: "Success" };
   } catch (error) {
-    console.log(error);
     return { status: 500, data: error };
   }
 };
