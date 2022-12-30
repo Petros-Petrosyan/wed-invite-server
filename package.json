@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "server": "npm run db:migrate && nodemon --require dotenv/config index.js",
     "start": "npm run db:migrate && node index",
