@@ -8,15 +8,27 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-
       isOnboarded: {
         type: Sequelize.BOOLEAN,
       },
-
       userName: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
       password: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      name: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      email: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      image: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
       createdAt: {

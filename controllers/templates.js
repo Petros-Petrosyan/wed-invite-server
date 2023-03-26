@@ -60,6 +60,7 @@ exports.updateTemplates = async (req, res) => {
   const { status, data } = await templatesServices.updateTemplates({
     body,
     userId: id,
+    url: body?.url,
   });
 
   res.status(status).send(data);
@@ -67,10 +68,13 @@ exports.updateTemplates = async (req, res) => {
 
 exports.deleteTemplates = async (req, res) => {
   const {
+    query,
     user: { id },
   } = req;
 
   const { status, data } = await templatesServices.deleteTemplates({
+    url: query?.url,
+    templateId: query?.templateId,
     userId: id,
   });
 

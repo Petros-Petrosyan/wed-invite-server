@@ -27,6 +27,30 @@ exports.signUp = async ({ userName, password }) => {
   }
 };
 
+exports.signUpWithGoogle = async ({ name, email, image }) => {
+  try {
+    const existingUser = await Users.findOne({ where: { email } });
+    if (!!existingUser) {
+      return { status: 200, data: existingUser };
+    }
+
+    try {
+      const user = await Users.create({
+        isOnboarded: false,
+        name,
+        email,
+        image,
+      });
+
+      return { status: 201, data: user };
+    } catch (error) {
+      return { status: 500, data: error };
+    }
+  } catch (error) {
+    return { status: 500, data: error };
+  }
+};
+
 exports.logIn = async ({ userName, password }) => {
   try {
     const user = await Users.findOne({ where: { userName } });

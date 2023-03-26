@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       data: {
         type: DataTypes.JSON,
       },
+      imageIds: {
+        type: DataTypes.JSON,
+      },
     },
     {
       sequelize,

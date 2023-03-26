@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post("/log-in", authenticationController.logIn);
 router.post("/sign-up", authenticationController.signUp);
+router.post("/sign-up-with-google", authenticationController.signUpWithGoogle);
 router.put(
   "/change-password",
   verifyMiddleware,

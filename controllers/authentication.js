@@ -10,6 +10,18 @@ exports.signUp = async (req, res) => {
   }
 };
 
+exports.signUpWithGoogle = async (req, res) => {
+  try {
+    const { body } = req;
+    const { status, data } = await authenticationServices.signUpWithGoogle(
+      body
+    );
+    res.status(status).send(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 exports.logIn = async (req, res) => {
   try {
     const { body } = req;

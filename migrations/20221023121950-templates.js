@@ -21,6 +21,9 @@ module.exports = {
       data: {
         type: Sequelize.JSON,
       },
+      imageIds: {
+        type: Sequelize.JSON,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
