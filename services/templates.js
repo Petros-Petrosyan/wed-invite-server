@@ -16,11 +16,11 @@ exports.getTemplateByUrl = async ({ url }) => {
 
 exports.getTemplates = async ({ userId }) => {
   try {
-    const templates = await Templates.findOne({
+    const templates = await Templates.findAll({
       where: { userId: String(userId) },
     });
 
-    return { status: 200, data: templates.dataValues };
+    return { status: 200, data: templates };
   } catch (error) {
     return { status: 500, data: error };
   }
@@ -46,11 +46,11 @@ exports.getTemplateKey = async ({ userId }) => {
 
 exports.addTemplates = async ({ body, userId }) => {
   try {
-    const templates = await Templates.findOne({
+    const templates = await Templates.findAll({
       where: { userId: String(userId) },
     });
 
-    if (!!templates) {
+    if (templates && templates?.length >= 3) {
       return { status: 500, data: messages.has_data };
     }
 
@@ -58,6 +58,7 @@ exports.addTemplates = async ({ body, userId }) => {
       url: uuidv4(),
       data: body.data,
       template: body.template,
+      imageIds: body.imageIds,
       userId: String(userId),
     });
     return { status: 200, data: response.dataValues };
@@ -66,11 +67,14 @@ exports.addTemplates = async ({ body, userId }) => {
   }
 };
 
-exports.updateTemplates = async ({ body, userId }) => {
+exports.updateTemplates = async ({ body, userId, url }) => {
   try {
-    await Templates.update({ ...body }, { where: { userId: String(userId) } });
+    await Templates.update(
+      { ...body },
+      { where: { userId: String(userId), url: String(url) } }
+    );
     const response = await Templates.findOne({
-      where: { userId: String(userId) },
+      where: { userId: String(userId), url: String(url) },
     });
 
     return { status: 200, data: response.dataValues };
@@ -79,10 +83,14 @@ exports.updateTemplates = async ({ body, userId }) => {
   }
 };
 
-exports.deleteTemplates = async ({ userId }) => {
+exports.deleteTemplates = async ({ userId, templateId, url }) => {
   try {
-    await Templates.destroy({ where: { userId: String(userId) } });
-    await Messages.destroy({ where: { userId: String(userId) } });
+    await Templates.destroy({
+      where: { userId: String(userId), id: String(templateId) },
+    });
+    await Messages.destroy({
+      where: { userId: String(userId), url: String(url) },
+    });
 
     return { status: 200, data: messages.WEB_PAGE_DELETED };
   } catch (error) {

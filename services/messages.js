@@ -21,6 +21,7 @@ exports.addMessages = async ({ url, message, name, guests }) => {
     const res = await Messages.create({
       message: message || "",
       name,
+      url: String(url),
       guests: String(guests),
       userId: String(template.dataValues.userId),
     });
