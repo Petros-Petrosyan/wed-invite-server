@@ -3,6 +3,9 @@ const templatesController = require("../controllers/templates");
 const verifyMiddleware = require("../middleware/verify");
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.json({ message: "Hello World!" });
+});
 router.get("/tets", (req, res) => {
   try {
     res.status(200).send("Success!");
@@ -11,6 +14,7 @@ router.get("/tets", (req, res) => {
     console.log();
   }
 });
+
 router.get("/templates/url", templatesController.getTemplateByUrl);
 router.get("/templates", verifyMiddleware, templatesController.getTemplates);
 router.post("/templates", verifyMiddleware, templatesController.addTemplates);

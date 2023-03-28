@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 
-//test
-
 const authenticationRoutes = require("./routes/authentication");
 const userRoutes = require("./routes/user");
 const templatesRoutes = require("./routes/templates");
