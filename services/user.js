@@ -21,3 +21,36 @@ exports.onboarding = async (id) => {
     return { status: 401, data: messages.invalid_name_or_password };
   }
 };
+
+exports.user = async (id) => {
+  try {
+    const user = await Users.findOne({ where: { id: String(id) } });
+
+    if (!user) {
+      return {
+        status: 401,
+        data: messages.not_authenticated,
+      };
+    }
+
+    return {
+      status: 200,
+      data: user,
+    };
+  } catch (error) {
+    return { status: 401, data: messages.invalid_name_or_password };
+  }
+};
+
+exports.updateLanguage = async ({ body, userId }) => {
+  try {
+    await Users.update({ ...body }, { where: { id: String(userId) } });
+    const response = await Users.findOne({
+      where: { id: String(userId) },
+    });
+
+    return { status: 200, data: response.lang };
+  } catch (error) {
+    return { status: 500, data: error };
+  }
+};

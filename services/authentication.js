@@ -70,6 +70,7 @@ exports.logIn = async ({ userName, password }) => {
         id: user.dataValues.id,
         userName: user.dataValues.userName,
         isOnboarded: user.isOnboarded,
+        lang: user.lang,
         accessToken,
       },
     };

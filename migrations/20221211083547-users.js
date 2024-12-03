@@ -11,6 +11,10 @@ module.exports = {
       isOnboarded: {
         type: Sequelize.BOOLEAN,
       },
+      lang: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
       userName: {
         allowNull: true,
         type: Sequelize.STRING,
