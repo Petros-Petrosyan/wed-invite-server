@@ -37,6 +37,15 @@ exports.getTemplates = async (req, res) => {
   }
 };
 
+exports.getAllTemplates = async (req, res) => {
+  try {
+    const { status, data } = await templatesServices.getAllTemplates();
+    res.status(status).send(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 exports.addTemplates = async (req, res) => {
   const {
     body,
@@ -76,6 +85,18 @@ exports.deleteTemplates = async (req, res) => {
     url: query?.url,
     templateId: query?.templateId,
     userId: id,
+  });
+
+  res.status(status).send(data);
+};
+
+exports.deleteUserTemplates = async (req, res) => {
+  const { query } = req;
+
+  const { status, data } = await templatesServices.deleteTemplates({
+    url: query?.url,
+    templateId: query?.templateId,
+    userId: query?.userId,
   });
 
   res.status(status).send(data);

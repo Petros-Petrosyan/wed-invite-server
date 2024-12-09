@@ -27,6 +27,16 @@ exports.user = async (req, res) => {
   }
 };
 
+exports.users = async (req, res) => {
+  try {
+    const { status, data } = await userServices.users();
+
+    res.status(status).send(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 exports.updateLanguage = async (req, res) => {
   const {
     body,

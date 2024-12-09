@@ -26,6 +26,16 @@ exports.getTemplates = async ({ userId }) => {
   }
 };
 
+exports.getAllTemplates = async () => {
+  try {
+    const templates = await Templates.findAll();
+
+    return { status: 200, data: templates };
+  } catch (error) {
+    return { status: 500, data: error };
+  }
+};
+
 exports.getTemplateKey = async ({ userId }) => {
   try {
     const templates = await Templates.findOne({

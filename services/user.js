@@ -42,6 +42,26 @@ exports.user = async (id) => {
   }
 };
 
+exports.users = async (id) => {
+  try {
+    const users = await Users.findAll();
+
+    if (!users) {
+      return {
+        status: 401,
+        data: messages.not_authenticated,
+      };
+    }
+
+    return {
+      status: 200,
+      data: users,
+    };
+  } catch (error) {
+    return { status: 401, data: messages.invalid_name_or_password };
+  }
+};
+
 exports.updateLanguage = async ({ body, userId }) => {
   try {
     await Users.update({ ...body }, { where: { id: String(userId) } });
