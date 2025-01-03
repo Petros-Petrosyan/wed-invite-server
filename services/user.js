@@ -42,6 +42,18 @@ exports.user = async (id) => {
   }
 };
 
+exports.deleteUser = async ({ userId }) => {
+  try {
+    await Users.destroy({
+      where: { id: String(userId) },
+    });
+
+    return { status: 200, data: "User successfully deleted" };
+  } catch (error) {
+    return { status: 500, data: error };
+  }
+};
+
 exports.users = async (id) => {
   try {
     const users = await Users.findAll();

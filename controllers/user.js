@@ -27,6 +27,16 @@ exports.user = async (req, res) => {
   }
 };
 
+exports.deleteUser = async (req, res) => {
+  const { query } = req;
+
+  const { status, data } = await userServices.deleteUser({
+    userId: query?.userId,
+  });
+
+  res.status(status).send(data);
+};
+
 exports.users = async (req, res) => {
   try {
     const { status, data } = await userServices.users();

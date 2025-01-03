@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { messages } = require("../constants/messages");
 const { Users } = require("../models");
 
-const verifyAdmin = async (req, res, next) => {
+const verifyAdmin = async (req, res, next, a, b) => {
   const {
     headers: { authorization },
   } = req;

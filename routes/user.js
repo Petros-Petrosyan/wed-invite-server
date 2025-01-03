@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.put("/onboarding", verifyMiddleware, userController.onboarding);
 router.get("/user", verifyMiddleware, userController.user);
+router.delete("/delete-user", verifyAdminMiddleware, userController.deleteUser);
 router.put("/update-language", verifyMiddleware, userController.updateLanguage);
 router.get("/users", verifyAdminMiddleware, userController.users);
 
